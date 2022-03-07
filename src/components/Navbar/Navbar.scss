@@ -1,0 +1,91 @@
+//COLOR
+
+$Primary: linear-gradient(177deg, #7638c6 0%, #3710e6 100.41%);
+$Secondary: #b7c0c8;
+
+@mixin textColorGradient {
+  background-image: $Primary;
+  background-clip: text;
+  color: transparent;
+}
+
+.navBar {
+  height: 100vh;
+  width: fit-content;
+  background-image: $Primary;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .logo {
+    width: 9.5rem;
+    height: 9.5rem;
+
+    margin: 3.5rem 0;
+
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      font-size: 7.2rem;
+      font-weight: 700;
+      background: $Primary;
+      background-clip: text;
+      color: transparent;
+    }
+  }
+
+  nav {
+    margin-top: 4rem;
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+
+      a {
+        text-decoration: none;
+        color: $Secondary;
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+
+        
+        margin: 1rem 4rem;
+        padding: 0.5rem 1.5rem;
+        
+        border-radius: 10px;
+        
+        span {
+          font-size: 2rem;
+          font-weight: 700;
+        }
+
+        img {
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+
+        &:hover{
+            background-color: rgba($color: #ffffff, $alpha: 0.1);
+            
+        }
+      }
+
+      .active {
+        background-color: white;
+
+        &:hover{
+          background-color: white !important
+        }
+
+        span {
+          @include textColorGradient();
+        }
+      }
+    }
+  }
+}
