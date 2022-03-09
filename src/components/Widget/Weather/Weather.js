@@ -16,7 +16,6 @@ function Weather() {
     "https://api.openweathermap.org/data/2.5/onecall?lat=43.41&lon=-0.58&exclude=minutely,hourly,alerts&appid=2ce26d6ff6b3519b4858bc5796133eac"
   );
 
-  const [weatherData, setWeatherData] = useState(null);
 
 
   const cityName = "Pau"; // Pour l'instant
@@ -47,15 +46,11 @@ function Weather() {
     }
   }
 
-  useEffect(() => {
-    if (response !== null) {
-      setWeatherData(response);
-    }
-  }, [response]);
+
 
   return (
     <>
-      {weatherData !== null ? (
+      {!loading ? (
         <div className="weather">
           <div className="weather__current">
             <div className="weather__current_placeDateHours">
@@ -71,20 +66,20 @@ function Weather() {
               <div className="weather__current_display_weather">
                 <div className="weather__current_display_group">
                   <img
-                    src={getIconWeather(weatherData.current.weather[0].id)}
+                    src={getIconWeather(response.current.weather[0].id)}
                     alt="weather icon"
                   />
-                  <span className="temp">{Math.floor(weatherData.current.temp - 273)}°C</span>
+                  <span className="temp">{Math.floor(response.current.temp - 273)}°C</span>
                 </div>
-                <span className="forecast">{weatherData.current.weather[0].main}</span>
+                <span className="forecast">{response.current.weather[0].main}</span>
               </div>
             </div>
           </div>
           {/* Apres */}
           <div className="weather__weekly">
-            {weatherData.daily.map(
+            {response.daily.map(
               (forecast, index) =>
-                index !== 0 && (
+                (index !== 0 && index < 7) && (
                   <WeatherDayCard
                     key={"day" + index}
                     day={date.getDay() - 1 + index}
@@ -97,7 +92,7 @@ function Weather() {
             )}
           </div>
         </div>
-      ) : null}
+      ) : <h1>Loading</h1>}
     </>
   );
 }
