@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useAxios from "../../../Hooks/useAxios";
 import "./Crypto.scss";
+import addIcon from "../../../assets/add.svg"
 
 function Crypto() {
   //const [listCrypto, updateListCrypto] = useState(["bitcoin", "ethereum"]);
@@ -20,7 +21,9 @@ function Crypto() {
         <div className="cryptoWidget">
           <div className="cryptoWidget__header">
             <h1 className="cryptoWidget__title">Crypto</h1>
-            <button className="cryptoWidget__button">+</button>
+            <button className="cryptoWidget__button">
+              <img src={addIcon} alt="add logo"/>  
+            </button>
           </div>
           <div className="cryptoWidget__listContainer">
             <table>
