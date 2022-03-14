@@ -1,5 +1,5 @@
 import React from 'react'
-import "./Project.scss"
+import "./ProjectPage.scss"
 import Header from '../../components/Header/Header'
 
 

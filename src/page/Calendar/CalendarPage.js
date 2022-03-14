@@ -1,5 +1,5 @@
 import React from 'react'
-import "./Calendar.scss"
+import "./CalendarPage.scss"
 import Header from '../../components/Header/Header'
 
 function Calendar() {

@@ -1,10 +1,10 @@
 import Navbar from './components/Navbar/Navbar';
 import './style/App.scss';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
-import Dashboard from "./page/Dashboard/Dashboard"
-import Calendar from "./page/Calendar/Calendar"
-import Task from "./page/Task/Task"
-import Project from "./page/ProjectPage/Project"
+import DashboardPage from "./page/Dashboard/DashboardPage"
+import CalendarPage from "./page/Calendar/CalendarPage"
+import TaskPage from "./page/Task/TaskPage"
+import ProjectPage from "./page/ProjectPage/ProjectPage"
 
 
 
@@ -14,10 +14,10 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Dashboard/>}/>
-          <Route path="task" element={<Task/>}/>
-          <Route path="calendar" element={<Calendar/>}/>
-          <Route path="project" element={<Project/>}/>
+          <Route path="/" element={<DashboardPage/>}/>
+          <Route path="task" element={<TaskPage/>}/>
+          <Route path="calendar" element={<CalendarPage/>}/>
+          <Route path="project" element={<ProjectPage/>}/>
         </Routes>
       </Router>
     </div>

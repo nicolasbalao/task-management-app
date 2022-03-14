@@ -1,5 +1,5 @@
 import React from 'react'
-import "./Task.scss"
+import "./TaskPage.scss"
 import Header from '../../components/Header/Header'
 
 function Task() {

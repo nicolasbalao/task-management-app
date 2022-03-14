@@ -38,6 +38,8 @@
     scrollbar-width: none; // or thin
     scroll-behavior: smooth;
 
+    cursor: n-resize;
+
     .task {
       display: flex;
       justify-content: space-between;
@@ -60,6 +62,10 @@
           border-radius: 10px;
           background-color: #5f5a92;
         }
+      }
+
+      input:hover{
+        cursor: pointer;
       }
     }
 

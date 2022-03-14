@@ -1,8 +1,9 @@
-import "./Dashboard.scss";
+import "./DashboardPage.scss";
 import Header from "../../components/Header/Header";
 import Weather from "../../components/Widget/Weather/Weather";
 import Crypto from "../../components/Widget/Crypto/Crypto";
 import ProjectResume from "../../components/Widget/ProjectResume/ProjectResume";
+import Planning from "../../components/Widget/Planning/Planning";
 
 function Dashboard() {
   return (
@@ -10,10 +11,9 @@ function Dashboard() {
       <Header title="Dashboard" />
       <div className="content">
         <Weather/>
-        <div className="test2"></div>
+        <Planning/>
         <Crypto/>
         <ProjectResume/>
-        <div className="test4"></div>
       </div>
     </div>
   );

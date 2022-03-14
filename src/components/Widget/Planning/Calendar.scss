@@ -1,0 +1,57 @@
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+
+  padding: 1rem;
+
+  border-radius: 10px;
+  background-color: rgba($color: #2d00f7, $alpha: 0.2);
+
+  gap: 1rem;
+  text-align: center;
+
+  .day {
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+
+  .date {
+    font-size: 1.3rem;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 600;
+
+    padding: 0.5rem;
+
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba($color: #ffffff, $alpha: 0.1);
+    }
+  }
+
+  .--pas {
+    color: #97979c;
+  }
+
+  .--currentDate {
+    background-color: white;
+  }
+
+  .--active {
+    background-color: rgba($color: #ffffff, $alpha: 0.5);
+
+    &:hover {
+      background-color: rgba($color: #ffffff, $alpha: 0.5);
+    }
+  }
+
+  .dote {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 100%;
+    margin: 0.2rem auto 0 auto;
+    background-color: #2d00f7;
+  }
+}
