@@ -1,8 +1,12 @@
 .planning {
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
-  height: fit-content;
-  padding: 1rem;
+  padding: 1.5rem;
+  grid-row: span 2;
+
+  overflow: auto;
+  scrollbar-width: none;
+
 
   h2 {
     margin: 1rem 0;
