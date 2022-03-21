@@ -37,6 +37,7 @@ function ProjectResume() {
 
     temp_state[index] = copyElement;
 
+
     updateTasks(temp_state);
   }
 

@@ -5,6 +5,7 @@ import DashboardPage from "./page/Dashboard/DashboardPage"
 import CalendarPage from "./page/Calendar/CalendarPage"
 import TaskPage from "./page/Task/TaskPage"
 import ProjectPage from "./page/ProjectPage/ProjectPage"
+import TestPage from './page/TestPage/TestPage';
 
 
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="task" element={<TaskPage/>}/>
           <Route path="calendar" element={<CalendarPage/>}/>
           <Route path="project" element={<ProjectPage/>}/>
+          <Route path='test' element={<TestPage/>}/>
         </Routes>
       </Router>
     </div>

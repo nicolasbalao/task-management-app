@@ -3,11 +3,9 @@ import "./TaskPage.scss";
 import Header from "../../components/Header/Header";
 import addIcon from "../../assets/add.svg";
 import TaskBoard from "../../components/TaskBoard/TaskBoard";
-import tasksList from "../../schema/tasks";
+import taskBoardListSchema from "../../schema/taskBoardSchema";
 
-function Task() {
-  const [boardName, setBoardName] = useState(["To-do", "Done"]);
-
+function TaskPage() {
   return (
     <div className="taskPage">
       <Header title="Task" />
@@ -21,13 +19,9 @@ function Task() {
           <span>Tags</span>
           <span>Date</span>
         </div>
-
-        {boardName.map((name) => (
-            <TaskBoard name={name} tasks={tasksList} />
-        ))}
       </div>
     </div>
   );
 }
 
-export default Task;
+export default TaskPage;

@@ -1,8 +1,8 @@
 import React from "react";
 
-function TaskItem({name, index,description, tags, date}) {
+function TaskItem({ name, index, description, tags, date }) {
   return (
-    <div className="task" key={`BoardTask ${index}`} onDrag={() => console.log("drag")}>
+    <div className="task">
       <div className="task__title">
         <span className="task__number">{index + 1}</span>
         <span>{name}</span>
