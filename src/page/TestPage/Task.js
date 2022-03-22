@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
+import { TaskContext } from "../../context/taskContext";
 
 const TaskContainer = styled.div`
   padding: 1rem;
@@ -22,7 +23,23 @@ const Handle = styled.div`
   margin-right: 10px;
 `;
 
-function Task({ task, index }) {
+const DelTask = styled.button`
+  padding: 0.5rem;
+  margin-left: 1rem;
+`;
+
+const Tags = styled.span`
+  padding: 0.5rem;
+  text-align: center;
+
+  background-color: #4a1cdc;
+  color: white;
+  margin: 0 1rem;
+`;
+
+function Task({ task, index, columnId }) {
+  const { delTask } = useContext(TaskContext);
+
   return (
     <Draggable draggableId={task.id} index={index}>
       {(provided, snapshot) => (
@@ -34,6 +51,10 @@ function Task({ task, index }) {
         >
           <Handle />
           {task.content}
+          {task.tags.map((tag) => (
+            <Tags>{tag}</Tags>
+          ))}
+          <DelTask onClick={() => delTask(columnId, task.id)}>X</DelTask>
         </TaskContainer>
       )}
     </Draggable>

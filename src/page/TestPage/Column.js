@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
+import { TaskContext } from "../../context/taskContext";
 import Task from "./Task";
 
 const Container = styled.div`
@@ -15,12 +16,22 @@ const Container = styled.div`
 const Title = styled.h3`
   padding: 1rem;
 `;
+
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const TaskList = styled.div`
   padding: 1rem;
   background-color: ${(props) => props.isDraggingOver && "lightblue"};
   min-height: 100px;
 
   flex-grow: 1;
+`;
+
+const DelColumn = styled.button`
+  padding: 0.3rem;
 `;
 
 // PROPS
@@ -35,54 +46,17 @@ const TaskList = styled.div`
 //     draggingOverWith: 'task-1'
 // }
 
-function Column({ column, tasks, index, data, setData }) {
-  const addTask = () => {
-    const taskId = `task-${Object.keys(data.tasks).length + 1}`;
-    console.log(taskId);
-
-    const task = {
-      id: taskId,
-      content: "End DND React",
-      tags: ["front"],
-    };
-
-    // create new object tasks for update the state
-    const newTasks = {
-      ...data.tasks,
-      [taskId]: task,
-    };
-
-    //create new taskIds for the column to add task
-    const newTasksIds = [
-      ...data.columns[`column-${index + 1}`].taskIds,
-      taskId,
-    ];
-
-    console.log("test: ", newTasksIds);
-
-    const newSate = {
-      ...data,
-      tasks: newTasks,
-      columns: {
-        ...data.columns,
-        [`column-${index + 1}`]: {
-          ...data.columns[`column-${index + 1}`],
-          taskIds: newTasksIds,
-        },
-      },
-    };
-
-    console.log("new state: ", newSate);
-
-    setData(newSate);
-    return;
-  };
+function Column({ column, tasks, index }) {
+  const { addTask, delColumn } = useContext(TaskContext);
 
   return (
     <Draggable draggableId={column.id} index={index}>
       {(provided) => (
         <Container {...provided.draggableProps} ref={provided.innerRef}>
-          <Title {...provided.dragHandleProps}>{column.title}</Title>
+          <Header>
+            <Title {...provided.dragHandleProps}>{column.title}</Title>
+            <DelColumn onClick={() => delColumn(column.id)}>X</DelColumn>
+          </Header>
           <Droppable droppableId={column.id}>
             {(provided, snapshot) => (
               <TaskList
@@ -91,7 +65,12 @@ function Column({ column, tasks, index, data, setData }) {
                 isDraggingOver={snapshot.isDraggingOver}
               >
                 {tasks.map((task, index) => (
-                  <Task key={task.id} task={task} index={index} />
+                  <Task
+                    key={task.id}
+                    task={task}
+                    index={index}
+                    columnId={column.id}
+                  />
                 ))}
                 {provided.placeholder}
                 <button onClick={() => addTask(index)}>Add task</button>

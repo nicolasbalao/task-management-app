@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Droppable } from "react-beautiful-dnd";
 import { DragDropContext } from "react-beautiful-dnd";
+import { TaskContext } from "../../context/taskContext";
 import Column from "./Column";
-import dataset from "./data";
+
+
 
 function TestPage() {
-  const [data, setData] = useState(dataset);
+  const { data, setData, addColumn } = useContext(TaskContext);
+
+  console.log("data", data);
 
   const onDragStart = () => (document.body.style.color = "orange");
 
@@ -17,8 +21,6 @@ function TestPage() {
 
     document.body.style.backgroundColor = `rgba(153, 141, 217, ${opacity})`;
   };
-
-  console.log(data.columns);
 
   //DND
 
@@ -112,34 +114,6 @@ function TestPage() {
     setData(newSate);
   };
 
-  const addColumn = () => {
-    const columnId = `column-${data.columnOrder.length + 1}`;
-    console.log(columnId);
-
-    const Column = {
-      id: columnId,
-      title: "done",
-      taskIds: [],
-    };
-
-    //NewStateColumn
-    const newColumn = {
-      ...data.columns,
-      [columnId]: Column,
-    };
-
-    const newColumnOrder = [...data.columnOrder, columnId];
-
-    const newState = {
-      ...data,
-      columns: newColumn,
-      columnOrder: newColumnOrder,
-    };
-
-    setData(newState);
-    return;
-  };
-
   return (
     <>
       <DragDropContext
@@ -170,8 +144,6 @@ function TestPage() {
                     column={column}
                     tasks={tasks}
                     index={index}
-                    data={data}
-                    setData={setData}
                   />
                 );
               })}
