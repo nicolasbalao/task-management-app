@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import { TaskContext } from "../../context/taskContext";
+import AddTaskModal from "./AddTaskModal";
 import Task from "./Task";
 
 const Container = styled.div`
@@ -46,8 +47,9 @@ const DelColumn = styled.button`
 //     draggingOverWith: 'task-1'
 // }
 
-function Column({ column, tasks, index }) {
-  const { addTask, delColumn } = useContext(TaskContext);
+function Column({ column, tasks, index, setModal }) {
+  const { delColumn } = useContext(TaskContext);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Draggable draggableId={column.id} index={index}>
@@ -73,7 +75,14 @@ function Column({ column, tasks, index }) {
                   />
                 ))}
                 {provided.placeholder}
-                <button onClick={() => addTask(index)}>Add task</button>
+                <button onClick={() => setIsOpen(true)}>Add task</button>
+                {isOpen && (
+                  <AddTaskModal
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
+                    index={index}
+                  />
+                )}
               </TaskList>
             )}
           </Droppable>

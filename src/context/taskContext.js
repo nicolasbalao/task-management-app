@@ -38,14 +38,17 @@ export const TaskProvider = ({ children }) => {
   };
 
   //ADD TASK
-  const addTask = (index) => {
+  const addTask = (index, title, tags) => {
     const taskId = `task-${Object.keys(data.tasks).length + 1}`;
     console.log(taskId);
 
+    const newTags = tags.split(' ');
+    console.log("newtags", newTags);
+
     const task = {
       id: taskId,
-      content: "End DND React",
-      tags: ["front"],
+      content: title,
+      tags: newTags,
     };
 
     // create new object tasks for update the state
@@ -81,13 +84,13 @@ export const TaskProvider = ({ children }) => {
   };
 
   //addColumn
-  const addColumn = () => {
+  const addColumn = (title) => {
     const columnId = `column-${data.columnOrder.length + 1}`;
     console.log(columnId);
 
     const Column = {
       id: columnId,
-      title: "done",
+      title: title,
       taskIds: [],
     };
 
