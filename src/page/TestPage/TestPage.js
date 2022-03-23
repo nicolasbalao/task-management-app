@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Droppable } from "react-beautiful-dnd";
 import { DragDropContext } from "react-beautiful-dnd";
 import { TaskContext } from "../../context/taskContext";
 import Column from "./Column";
-
-
+import ReactModal from "react-modal";
+import AddColumnModal from "./AddColumnModal";
 
 function TestPage() {
-  const { data, setData, addColumn } = useContext(TaskContext);
+  const { data, setData, addColumn, addTask } = useContext(TaskContext);
 
   console.log("data", data);
 
@@ -114,6 +114,8 @@ function TestPage() {
     setData(newSate);
   };
 
+  const [columnModal, setColumnModal] = useState(false);
+
   return (
     <>
       <DragDropContext
@@ -152,7 +154,10 @@ function TestPage() {
           )}
         </Droppable>
       </DragDropContext>
-      <button onClick={() => addColumn()}>Add column</button>
+      <button onClick={() => setColumnModal(true)}>Add column</button>
+      {columnModal && (
+        <AddColumnModal isOpen={columnModal} setIsOpen={setColumnModal} />
+      )}
     </>
   );
 }
