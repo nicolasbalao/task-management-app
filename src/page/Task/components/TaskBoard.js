@@ -1,14 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import { DragDropContext } from "react-beautiful-dnd";
-import { TaskContext } from "../../../context/taskContext";
+import { useTaskContext } from "../../../context/taskContext";
 import Column from "./Column";
 
 function TaskBoard() {
-  const { data, setData } = useContext(TaskContext);
+  const { data, setData } = useTaskContext();
 
   console.log("data", data);
-
 
   //DND
 

@@ -7,6 +7,7 @@ import TaskPage from "./page/Task/TaskPage";
 import ProjectPage from "./page/ProjectPage/ProjectPage";
 import TestPage from "./page/TestPage/TestPage";
 import { TaskProvider } from "./context/taskContext";
+import { PlanningProvider } from "./context/planningContext";
 
 function App() {
   return (
@@ -30,7 +31,14 @@ function App() {
               </TaskProvider>
             }
           />
-          <Route path="calendar" element={<CalendarPage />} />
+          <Route
+            path="calendar"
+            element={
+              <PlanningProvider>
+                <CalendarPage />
+              </PlanningProvider>
+            }
+          />
           <Route path="project" element={<ProjectPage />} />
           <Route
             path="test"

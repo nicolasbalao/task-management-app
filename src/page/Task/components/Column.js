@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import { Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
-import { TaskContext } from "../../../context/taskContext";
+import { useTaskContext } from "../../../context/taskContext";
 import AddTaskModal from "./Modal/AddTaskModal";
 import Task from "./Task";
 
@@ -73,7 +73,7 @@ const ButtonAddTask = styled.button`
 // }
 
 function Column({ column, tasks, index }) {
-  const { delColumn } = useContext(TaskContext);
+  const { delColumn } = useTaskContext();
   const [isOpen, setIsOpen] = useState(false);
 
   return (

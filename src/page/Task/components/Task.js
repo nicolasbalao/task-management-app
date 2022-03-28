@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
-import { TaskContext } from "../../../context/taskContext";
+import { useTaskContext } from "../../../context/taskContext";
 
 const TaskContainer = styled.div`
   padding: 1rem 2rem;
@@ -57,7 +57,7 @@ const TagsContainer = styled.div`
 `;
 
 function Task({ task, index, columnId }) {
-  const { delTask } = useContext(TaskContext);
+  const { delTask } = useTaskContext();
 
   return (
     <Draggable draggableId={task.id} index={index}>
