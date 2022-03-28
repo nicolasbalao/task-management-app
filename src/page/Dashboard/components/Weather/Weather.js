@@ -1,12 +1,11 @@
 import "./Weather.scss";
-import cloudy from "../../../assets/partly-cloudy.png";
-import rainy from "../../../assets/rainy.png";
-import sunny from "../../../assets/sun.png";
-import snowy from "../../../assets/snowy.png";
-import storm from "../../../assets/storm.png";
+import cloudy from "../../../../assets/partly-cloudy.png";
+import rainy from "../../../../assets/rainy.png";
+import sunny from "../../../../assets/sun.png";
+import snowy from "../../../../assets/snowy.png";
+import storm from "../../../../assets/storm.png";
 import WeatherDayCard from "./WeatherDayCard";
-import { useEffect, useState } from "react";
-import useAxios from "../../../Hooks/useAxios";
+import useAxios from "../../../../Hooks/useAxios";
 
 function Weather() {
   // lat: 43.41 lon: -0.58

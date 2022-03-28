@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import useAxios from "../../../Hooks/useAxios";
+import useAxios from "../../../../Hooks/useAxios";
 import "./Crypto.scss";
-import addIcon from "../../../assets/add.svg";
+import addIcon from "../../../../assets/add.svg";
+
+
 
 function Crypto() {
   //const [listCrypto, updateListCrypto] = useState(["bitcoin", "ethereum"]);

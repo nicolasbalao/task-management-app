@@ -14,8 +14,22 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<DashboardPage />} />
-          <Route path="task" element={<TaskPage />} />
+          <Route
+            path="/"
+            element={
+              <TaskProvider>
+                <DashboardPage />
+              </TaskProvider>
+            }
+          />
+          <Route
+            path="task"
+            element={
+              <TaskProvider>
+                <TaskPage />
+              </TaskProvider>
+            }
+          />
           <Route path="calendar" element={<CalendarPage />} />
           <Route path="project" element={<ProjectPage />} />
           <Route

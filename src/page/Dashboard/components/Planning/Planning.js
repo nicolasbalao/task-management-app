@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Calendar from "./Calendar";
 import "./Planning.scss";
-import tasks from "../../../schema/tasksPlanning";
+import tasks from "../../../../schema/tasksPlanning";
 import Tasks from "../Task/Tasks";
 
 function Planning() {

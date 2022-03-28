@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./ProjectResume.scss";
-import designProject from "../../../assets/designProject.png";
+import designProject from "../../../../assets/designProject.png";
 
 function ProjectResume() {
   const [tasks, updateTasks] = useState([
@@ -37,7 +37,6 @@ function ProjectResume() {
 
     temp_state[index] = copyElement;
 
-
     updateTasks(temp_state);
   }
 
@@ -64,7 +63,9 @@ function ProjectResume() {
             <div className="task__title">{task.title}</div>
             <div className="task__tagsContainer">
               {task.tags.map((tag, index) => (
-                <div className="tags" key={`tags project ${index}`}>{tag}</div>
+                <div className="tags" key={`tags project ${index}`}>
+                  {tag}
+                </div>
               ))}
             </div>
             <input
