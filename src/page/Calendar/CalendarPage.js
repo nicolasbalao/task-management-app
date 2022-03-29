@@ -4,13 +4,16 @@ import Header from "../../components/Header/Header";
 import styled from "styled-components";
 import { usePlanningContext } from "../../context/planningContext";
 import CalendarMonth from "./components/CalendarMonth";
+import chevron from "../../assets/chevron.png";
 
 const Content = styled.div`
   display: flex;
   flex-direction: column;
 
+  gap: 1rem;
+
   padding: 1rem 3.5rem;
-  padding-top: 6rem;
+  padding-top: 1.5rem;
 `;
 
 const ViewContainer = styled.div`
@@ -52,24 +55,39 @@ const DateContainer = styled.div`
 `;
 
 const DateLabel = styled.span`
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 700;
+  color: #403b7b;
 `;
 
 const DateChangeContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
 `;
 
 const DateChange = styled.div`
   color: white;
   border-radius: 50%;
+  background-image: linear-gradient(177deg, #7638c6 0%, #3710e6 100.41%);
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 1rem;
+  height: 1rem;
+
+  padding: 0.5rem;
+
+  cursor: pointer;
 `;
 
 function Calendar() {
   const [monthView, setMonthView] = useState(true);
-
+  const { activeDate, nameOfMonth, addMonthActiveDate, subMonthActiveDate } =
+    usePlanningContext();
 
   return (
     <div className="calendarPage">
@@ -96,6 +114,19 @@ function Calendar() {
             </>
           )}
         </ViewContainer>
+        <DateContainer>
+          <DateLabel>{`${
+            nameOfMonth[activeDate.getMonth()]
+          } ${activeDate.getDate()}, ${activeDate.getFullYear()}`}</DateLabel>
+          <DateChangeContainer>
+            <DateChange onClick={() => subMonthActiveDate()}>
+              <img src={chevron} />
+            </DateChange>
+            <DateChange onClick={() => addMonthActiveDate()}>
+              <img src={chevron} style={{ transform: "rotate(180deg)" }} />
+            </DateChange>
+          </DateChangeContainer>
+        </DateContainer>
         <CalendarMonth />
       </Content>
     </div>

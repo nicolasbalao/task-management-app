@@ -5,6 +5,7 @@ import {
   startOfMonth,
   startOfWeek,
 } from "date-fns";
+import addMonths from "date-fns/addMonths";
 import React, { createContext, useContext, useState } from "react";
 import { dataset } from "../page/Calendar/planningData";
 
@@ -15,14 +16,28 @@ export const PlanningProvider = ({ children }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [activeDate, setActiveDate] = useState(currentDate);
 
-  const firstDayMonth = startOfWeek(startOfMonth(currentDate));
-  const lastDayMonth = endOfWeek(endOfMonth(currentDate));
+  const firstDayMonth = startOfWeek(startOfMonth(activeDate));
+  const lastDayMonth = endOfWeek(endOfMonth(activeDate));
   const datesOfMonth = eachDayOfInterval({
     start: firstDayMonth,
     end: lastDayMonth,
   });
 
   const nameOfDay = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+  const nameOfMonth = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
   //SET UP DATA Planning
   const [data, setData] = useState(dataset);
@@ -36,6 +51,19 @@ export const PlanningProvider = ({ children }) => {
     );
   };
 
+  const addMonthActiveDate = () => {
+    setActiveDate(addMonths(activeDate, 1));
+    console.log("active date: ", activeDate);
+    return;
+  };
+
+  const subMonthActiveDate = () => {
+    setActiveDate(addMonths(activeDate, -1));
+    return;
+  };
+
+
+
   return (
     <PlanningContext.Provider
       value={{
@@ -46,8 +74,11 @@ export const PlanningProvider = ({ children }) => {
         setActiveDate,
         usePlanningContext,
         nameOfDay,
+        nameOfMonth,
         sameDate,
         activeDate,
+        addMonthActiveDate,
+        subMonthActiveDate,
       }}
     >
       {children}

@@ -1,21 +1,21 @@
 export const dataset = {
-  rdv: {
-    "rdv-1": {
-      id: "rdv-1",
+  events: {
+    "event-1": {
+      id: "event-1",
       title: "Pole emploie",
       description: "rdv",
       from: "09:00",
       to: "10:00",
     },
-    "rdv-2": {
-      id: "rdv-2",
+    "event-2": {
+      id: "event-2",
       title: "Macdo",
       description: "interview",
       from: "14:00",
       to: "22:00",
     },
-    "rdv-3": {
-      id: "rdv-3",
+    "event-3": {
+      id: "event-3",
       title: "Mission local",
       description: "rdv",
       from: "10:00",
@@ -24,12 +24,12 @@ export const dataset = {
   },
   dates: [
     {
-      date: new Date("28/03/2022"),
-      rdv: ["rdv-1", "rdv-2"],
+      date: new Date(2022, 2, 28),
+      events: ["event-1", "event-2", "event-3"],
     },
     {
-      date: new Date("30/03/2022"),
-      rdv: ["rdv-3"],
+      date: new Date(2022, 2, 30),
+      events: ["event-3"],
     },
   ],
 };

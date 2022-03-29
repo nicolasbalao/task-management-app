@@ -2,11 +2,12 @@ import { isSameDay } from "date-fns";
 import React from "react";
 import styled from "styled-components";
 import { usePlanningContext } from "../../../context/planningContext";
+import EventDays from "./EventDays";
 
 const CalendarContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: 0.5fr repeat(4, 1fr);
+  grid-template-rows: 0.3fr repeat(4, 1fr);
 
   border-radius: 10px;
   overflow: hidden;
@@ -26,19 +27,22 @@ const NameDay = styled.div`
   border-right: 1px solid grey;
 `;
 
-const TestDate = styled.div`
-  min-height: 12rem;
+const DayContainer = styled.div`
+  height: 12rem;
 
+  padding: 0 1rem 0.3rem;
+  overflow: auto;
   display: flex;
   flex-direction: column;
 
+  scrollbar-width: none;
   background-color: white;
 
   border-right: 1px solid lightgrey;
   border-bottom: 1px solid lightgrey;
 `;
 
-const TestDateDate = styled.span`
+const DayDate = styled.span`
   align-self: flex-end;
   font-size: 1.6rem;
   font-weight: 700;
@@ -51,10 +55,10 @@ const TestDateDate = styled.span`
   border-radius: 10px;
   cursor: pointer;
 
-  margin: 1rem;
+  margin-bottom: 0.5rem;
 `;
 
-const TestDateDateCurrent = styled.span`
+const DayDateCurrent = styled.span`
   align-self: flex-end;
   font-size: 1.6rem;
   font-weight: 700;
@@ -75,6 +79,7 @@ function CalendarMonth() {
     currentDate,
     setActiveDate,
     activeDate,
+    data,
   } = usePlanningContext();
 
   return (
@@ -82,26 +87,41 @@ function CalendarMonth() {
       {nameOfDay.map((name) => (
         <NameDay key={name}>{name}</NameDay>
       ))}
-      {datesOfMonth.map((date) => (
-        <TestDate>
+      {datesOfMonth.map((date, index) => (
+        <DayContainer key={`day ${index}`}>
           {sameDate(currentDate, date) ? (
-            <TestDateDateCurrent
+            <DayDateCurrent
               onClick={() => setActiveDate(date)}
               date={date}
               activeDate={activeDate}
             >
               {date.getDate()}
-            </TestDateDateCurrent>
+            </DayDateCurrent>
           ) : (
-            <TestDateDate
+            <DayDate
               onClick={() => setActiveDate(date)}
               date={date}
               activeDate={activeDate}
             >
               {date.getDate()}
-            </TestDateDate>
+            </DayDate>
           )}
-        </TestDate>
+          {data.dates.map((dataDate) => {
+            if (
+              dataDate.date.getDate() === date.getDate() &&
+              dataDate.date.getMonth() === date.getMonth()
+            ) {
+              console.log("data: ", data);
+              console.log("date of month", datesOfMonth);
+              return dataDate.events.map((eventId, index) => (
+                <EventDays
+                  key={`event ${date.getDate()} ${index}`}
+                  data={data.events[eventId]}
+                />
+              ));
+            }
+          })}
+        </DayContainer>
       ))}
     </CalendarContainer>
   );
